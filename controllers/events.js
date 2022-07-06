@@ -28,7 +28,7 @@ const crearEvento = async (req, res = response) => {
     console.log(error);
     res.status(500).json({
       ok: false,
-      msg: 'Hable con el administrador',
+      msg: 'Talk to Admin',
     });
   }
 };
@@ -43,14 +43,14 @@ const actualizarEvento = async (req, res = response) => {
     if (!evento) {
       return res.status(404).json({
         ok: false,
-        msg: 'Evento no existe por ese id',
+        msg: 'There is no event for the id',
       });
     }
 
     if (evento.user.toString() !== uid) {
       return res.status(401).json({
         ok: false,
-        msg: 'No tiene privilegio de editar este evento',
+        msg: 'Only the author can edit this event',
       });
     }
 
@@ -62,7 +62,7 @@ const actualizarEvento = async (req, res = response) => {
     const eventoActualizado = await Evento.findByIdAndUpdate(
       eventoId,
       nuevoEvento,
-      { new: true } // Retorna los datos actualizados
+      { new: true }, // Retorna los datos actualizados
     );
 
     res.json({
@@ -73,7 +73,7 @@ const actualizarEvento = async (req, res = response) => {
     console.log(error);
     res.status(500).json({
       ok: false,
-      msg: 'Hable con el administrador',
+      msg: 'Talk to Admin',
     });
   }
 };
@@ -88,14 +88,14 @@ const eliminarEvento = async (req, res = response) => {
     if (!evento) {
       return res.status(404).json({
         ok: false,
-        msg: 'Evento no existe por ese id',
+        msg: 'There is no event for the id',
       });
     }
 
     if (evento.user.toString() !== uid) {
       return res.status(401).json({
         ok: false,
-        msg: 'No tiene privilegio para eliminar este evento',
+        msg: 'Only the author can delete this event',
       });
     }
 
@@ -106,7 +106,7 @@ const eliminarEvento = async (req, res = response) => {
     console.log(error);
     res.status(500).json({
       ok: false,
-      msg: 'Hable con el administrador',
+      msg: 'Talk to Admin',
     });
   }
 };
